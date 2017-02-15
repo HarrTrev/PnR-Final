@@ -14,7 +14,7 @@ class GoPiggy(pigo.Pigo):
     ########################
 
     def __init__(self):
-        print("Your piggy has be instantiated!")
+        print("Your piggy has been instantiated!")
         # Our servo turns the sensor. What angle of the servo( ) method sets it straight?
         self.MIDPOINT = 90
         # YOU DECIDE: How close can an object get (cm) before we have to stop?
@@ -64,9 +64,26 @@ class GoPiggy(pigo.Pigo):
         print("Piggy dance")
         ##### WRITE YOUR FIRST PROJECT HERE
         self.shimmy()
-        #self.chacha()
+        self.chacha()
         #self.sprinkler()
         #self.back_it_up()
+
+    def chacha(self):
+        for x in range(2):
+        self.set_speed(130,140)
+        self.encB(6)
+        self.set_speed(150,130)
+        self.encB(6)
+        self.set_speed(130,150)
+        self.encF(6)
+        self.set_speed(140,130)
+        self.set_speed(6)
+
+
+
+
+
+
     def shimmy(self):
         print('shimmy')
         for x in range(3):
