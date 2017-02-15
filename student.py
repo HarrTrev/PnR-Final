@@ -70,14 +70,14 @@ class GoPiggy(pigo.Pigo):
 
     def chacha(self):
         for x in range(2):
-        self.set_speed(130,140)
-        self.encB(6)
-        self.set_speed(150,130)
-        self.encB(6)
-        self.set_speed(130,150)
-        self.encF(6)
-        self.set_speed(140,130)
-        self.set_speed(6)
+            self.set_speed(130,140)
+            self.encB(6)
+            self.set_speed(150,130)
+            self.encB(6)
+            self.set_speed(130,150)
+            self.encF(6)
+            self.set_speed(140,130)
+            self.set_speed(6)
 
 
 
