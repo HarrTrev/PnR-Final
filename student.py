@@ -68,7 +68,28 @@ class GoPiggy(pigo.Pigo):
         #self.back_it_up()
 
     def sprinkler(self):
+        self.servo(180)
+        time.sleep(.4)
+        self.servo(160)
+        time.sleep(.4)
+        self.servo(140)
+        time.sleep(.4)
+        self.servo(120)
+        time.sleep(.4)
+        self.servo(100)
+        time.sleep(.4)
+        self.servo(80)
+        time.sleep(.4)
+        self.servo(60)
+        time.sleep(.4)
+        self.servo(40)
+        time.sleep(.4)
+        self.servo(20)
+        time.sleep(.4)
         self.servo(0)
+        time.sleep(.8)
+        self.servo(180)
+
 
 
     def chacha(self):
