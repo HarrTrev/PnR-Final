@@ -70,7 +70,7 @@ class GoPiggy(pigo.Pigo):
 
     def burn_out(self):
         self.set_speed(250,250)
-        self.encF(5)
+        self.encF(15)
 
     def spin(self):
         for x in range(3):
