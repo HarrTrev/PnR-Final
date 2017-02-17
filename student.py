@@ -65,7 +65,10 @@ class GoPiggy(pigo.Pigo):
         ##### WRITE YOUR FIRST PROJECT HERE
         self.chacha()
         self.sprinkler()
-        #self.back_it_up()
+        self.spin()
+
+    def spin(self):
+        self.encR(4)
 
     def sprinkler(self):
         self.servo(180)
