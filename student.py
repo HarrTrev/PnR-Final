@@ -70,6 +70,7 @@ class GoPiggy(pigo.Pigo):
     def spin(self):
         self.encR(4)
 
+
     def sprinkler(self):
         self.servo(180)
         time.sleep(.4)
