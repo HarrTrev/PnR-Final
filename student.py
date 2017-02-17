@@ -66,6 +66,11 @@ class GoPiggy(pigo.Pigo):
         self.chacha()
         self.sprinkler()
         self.spin()
+        self.burn_out()
+
+    def burn_out(self):
+        self.set_speed(250,250)
+        encF(1)
 
     def spin(self):
         for x in range(3):
