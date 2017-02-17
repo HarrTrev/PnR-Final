@@ -63,10 +63,13 @@ class GoPiggy(pigo.Pigo):
     def dance(self):
         print("Piggy dance")
         ##### WRITE YOUR FIRST PROJECT HERE
-        self.shimmy()
         self.chacha()
-        #self.sprinkler()
+        self.sprinkler()
         #self.back_it_up()
+
+    def sprinkler(self):
+        self.servo(0)
+
 
     def chacha(self):
         for x in range(2):
@@ -84,17 +87,6 @@ class GoPiggy(pigo.Pigo):
             time.sleep(.4)
 
 
-
-
-
-
-    def shimmy(self):
-        print('shimmy')
-        for x in range(3):
-            self.servo(30)
-            self.encR(3)
-            self.servo(140)
-            self.encL(3)
 
     ########################
     ### MAIN LOGIC LOOP - the core algorithm of my navigation
