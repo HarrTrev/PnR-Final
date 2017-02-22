@@ -66,8 +66,8 @@ class GoPiggy(pigo.Pigo):
             if self.dist() < 30:
                 print("m&m's are alright")
                 return
-            print('skittles are better')
-            self.dance()
+        print('skittles are better')
+        self.dance()
 
 
 
@@ -97,7 +97,8 @@ class GoPiggy(pigo.Pigo):
         for x in range(160, 20, -20):
             self.servo(x)
             time.sleep(.4)
-            self.servo(160)
+        self.servo(160)
+
 
 
 
