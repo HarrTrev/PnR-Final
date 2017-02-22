@@ -60,7 +60,7 @@ class GoPiggy(pigo.Pigo):
         # activate the item selected
         menu.get(ans, [None, error])[1]()
 
-    def sweep(self):
+    def safety_dance(self):
         for y in range(3):
             for x in range(self.MIDPOINT - 60, self.MIDPOINT + 60, 2):
                 self.servo(x)
@@ -71,6 +71,11 @@ class GoPiggy(pigo.Pigo):
         print("skittles are ok")
         self.dance()
 
+    def sweep(self):
+        for x in range(self.MIDPOINT-60, self.MIDPOINT +60, 2):
+            self.scan[x] = self.dist()
+        print("Here's what I saw:")
+        print(self.scan)
 
 
 
