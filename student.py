@@ -48,6 +48,7 @@ class GoPiggy(pigo.Pigo):
         menu = {"n": ("Navigate forward", self.nav),
                 "d": ("Dance", self.dance),
                 "c": ("Calibrate", self.calibrate),
+                "w": ("Sweep", self.sweep),
                 "s": ("Check status", self.status),
                 "q": ("Quit", quit)
                 }
@@ -58,6 +59,15 @@ class GoPiggy(pigo.Pigo):
         ans = raw_input("Your selection: ")
         # activate the item selected
         menu.get(ans, [None, error])[1]()
+
+    def sweep(self):
+        for x in range(20, 160, 2)
+            self.servo(x)
+            if self.dist() < 30:
+                print("m&m's are alright")
+                break
+
+
 
     #YOU DECIDE: How does your GoPiggy dance?
     def dance(self):
@@ -75,35 +85,17 @@ class GoPiggy(pigo.Pigo):
         self.encR(20)
 
     def spin(self):
-        for x in range(3):
-            time.sleep(.2)
         self.encR(100)
         time.sleep(.3)
         self.encL(100)
 
 
     def sprinkler(self):
-        self.servo(180)
-        time.sleep(.4)
-        self.servo(160)
-        time.sleep(.4)
-        self.servo(140)
-        time.sleep(.4)
-        self.servo(120)
-        time.sleep(.4)
-        self.servo(100)
-        time.sleep(.4)
-        self.servo(80)
-        time.sleep(.4)
-        self.servo(60)
-        time.sleep(.4)
-        self.servo(40)
-        time.sleep(.4)
-        self.servo(20)
-        time.sleep(.4)
-        self.servo(0)
-        time.sleep(.8)
-        self.servo(180)
+        for x in range(160, 20, -20):
+            self.servo(x)
+            time.sleep(.4)
+            self.servo(160)
+
 
 
 
