@@ -67,7 +67,7 @@ class GoPiggy(pigo.Pigo):
                 if self.dist() < 30:
                     print("m&m's are alright")
                     return
-            self.encR(6)
+            self.encR(8)
         print("skittles are ok")
         self.dance()
 
