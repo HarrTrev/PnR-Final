@@ -20,9 +20,9 @@ class GoPiggy(pigo.Pigo):
         # YOU DECIDE: How close can an object get (cm) before we have to stop?
         self.STOP_DIST = 30
         # YOU DECIDE: What left motor power helps straighten your fwd()?
-        self.LEFT_SPEED = 140
+        self.LEFT_SPEED = 120
         # YOU DECIDE: What left motor power helps straighten your fwd()?
-        self.RIGHT_SPEED = 140
+        self.RIGHT_SPEED = 120
         # This one isn't capitalized because it changes during runtime, the others don't
         self.turn_track = 0
         # Our scan list! The index will be the degree and it will store distance
@@ -48,7 +48,9 @@ class GoPiggy(pigo.Pigo):
         menu = {"n": ("Navigate forward", self.nav),
                 "d": ("Dance", self.dance),
                 "c": ("Calibrate", self.calibrate),
-                "w": ("Sweep", self.count_all_obstacles),
+                "w": ("Sweep", self.sweep),
+                "o": ("Count obstacles", self.count_obstacles),
+                "a": ("Count all objects", self.count_all_obstacles),
                 "s": ("Check status", self.status),
                 "q": ("Quit", quit)
                 }
@@ -97,9 +99,9 @@ class GoPiggy(pigo.Pigo):
         big_counter = 0
         big_counter += self.count_obstacles()
         for x in range(4):
-            self.encR(8)
+            self.encR(9)
             big_counter += self.count_obstacles()
-        print('Total obstacles ' + str(big_counter))
+        print('Total obstacles: ' + str(big_counter))
         return big_counter
 
     def turn_test(self):
