@@ -60,6 +60,41 @@ class GoPiggy(pigo.Pigo):
         # activate the item selected
         menu.get(ans, [None, error])[1]()
 
+    def count_obstacles(self):
+        #run a scan
+        self.wide_scan()
+        #count the objects
+        counter = 0
+        #starting state assumes no objects
+        found_something = False
+        #loop through all my scan data
+        for x in self.scan:
+            # if x is not None and close
+            if x and x <= self.STOP_DIST:
+                # if I've already found something
+                if found_something:
+                    print("Object part 7 cont.")
+                # if this is a new object
+                else:
+                    #switch my tracker
+                    found_something = True
+                    print("Starting Object")
+            #if data = safe
+            if x and x > self.STOP_DIST:
+                #Tracker triggered
+                if found_something:
+                    print("rip object")
+                    #reset tracker
+                    found_something = False
+                    #increase counter
+                    counter += 1
+        print('Total number of obstacles in this scan: ' + str(counter))
+        return counter
+
+    def turn_test(self):
+        while True:
+            ans = raw_input('Turn right, left or stop? (r/l/s)')
+
     def safety_dance(self):
         for y in range(3):
             for x in range(self.MIDPOINT - 60, self.MIDPOINT + 60, 2):
@@ -72,7 +107,7 @@ class GoPiggy(pigo.Pigo):
         self.dance()
 
     def sweep(self):
-        for x in range(self.MIDPOINT-60, self.MIDPOINT +60, 2):
+        for x in range(self.MIDPOINT-60, self.MIDPOINT + 60, 2):
             self.servo(x)
             self.scan[x] = self.dist()
         print("Here's what I saw:")
