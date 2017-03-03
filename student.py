@@ -93,7 +93,16 @@ class GoPiggy(pigo.Pigo):
 
     def turn_test(self):
         while True:
-            ans = raw_input('Turn right, left or stop? (r/l/s)')
+            ans = raw_input('Turn right, left or stop? (r/l/s): ')
+            if ans == 'r':
+                val = int(raw_input('/nBy how much?: '))
+                self.encR(val)
+            elif ans == 'l':
+                val = int(raw_input('/nBy how much?: '))
+                self.encL(val)
+            else:
+                break
+            self.restore_heading()
 
     def safety_dance(self):
         for y in range(3):
