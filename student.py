@@ -48,10 +48,9 @@ class GoPiggy(pigo.Pigo):
         menu = {"n": ("Navigate forward", self.nav),
                 "d": ("Dance", self.dance),
                 "c": ("Calibrate", self.calibrate),
-                "w": ("Sweep", self.sweep),
+                "w": ("Sweep", self.count_obstacles),
                 "s": ("Check status", self.status),
                 "q": ("Quit", quit)
-                "g": ("Good sweep", self.count_obstacles)
                 }
         # loop and print the menu...
         for key in sorted(menu.keys()):
