@@ -53,7 +53,8 @@ class GoPiggy(pigo.Pigo):
                 "a": ("Count all objects", self.count_all_obstacles),
                 "s": ("Check status", self.status),
                 "q": ("Quit", quit),
-                "t": ("Test", self.test)
+                "t": ("Test", self.test),
+                "m": ("Measure", self.dist_gone)
                 }
         # loop and print the menu...
         for key in sorted(menu.keys()):
@@ -210,6 +211,16 @@ class GoPiggy(pigo.Pigo):
             time.sleep(.1)
         self.stop()
         self.encB(3)
+
+    def dist_gone(self):
+        x = self.scan()
+        self.encF(2)
+        y = self.scan()
+        return x-y
+
+
+
+
 
     def test(self):
         answer = raw_input("Run? (y/n)")
