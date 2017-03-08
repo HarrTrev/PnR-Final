@@ -52,7 +52,8 @@ class GoPiggy(pigo.Pigo):
                 "o": ("Count obstacles", self.count_obstacles),
                 "a": ("Count all objects", self.count_all_obstacles),
                 "s": ("Check status", self.status),
-                "q": ("Quit", quit)
+                "q": ("Quit", quit),
+                "t": ("Test", self.test)
                 }
         # loop and print the menu...
         for key in sorted(menu.keys()):
@@ -189,15 +190,33 @@ class GoPiggy(pigo.Pigo):
     ### MAIN LOGIC LOOP - the core algorithm of my navigation
     ### (kind of a big deal)
     ########################
-
     def nav(self):
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         print("[ Press CTRL + C to stop me, then run stop.py ]\n")
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         # this is the loop part of the "main logic loop"
+        while True:
+            if self.is_clear():
+                self.cruise()
+            answer = self.choose_path()
+            if answer == "left":
+                self.encL(6)
+            elif answer == "right":
+                self.encR(6)
 
+    def cruise(self):
+        self.fwd()  # I added this to pigo
+        while self.is_clear():
+            time.sleep(.1)
+        self.stop()
+        self.encB(3)
 
-
+    def test(self):
+        answer = raw_input("Run? (y/n)")
+        if answer == 'y':
+            self.encF(2)
+        else:
+            return
 
 ####################################################
 ############### STATIC FUNCTIONS

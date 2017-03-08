@@ -76,6 +76,8 @@ class Pigo(object):
     def nav(self):
         print("Parent nav")
 
+    def fwd(self):
+        fwd()
 
     ##DANCING IS FOR THE CHILD CLASS
     def dance(self):
