@@ -224,7 +224,7 @@ class GoPiggy(pigo.Pigo):
         if answer == 'y':
             self.encF(2)
         elif answer == 'yes':
-            self.encF(4)
+            self.encF(100)
         else:
             return
 
@@ -242,3 +242,9 @@ def quit():
 ######## The app starts right here when we instantiate our GoPiggy
 
 g = GoPiggy()
+
+try:
+    g = GoPiggy()
+except (KeyboardInterrupt, SystemExit):
+    from gopigo import *
+    stop()
