@@ -54,7 +54,6 @@ class GoPiggy(pigo.Pigo):
                 "s": ("Check status", self.status),
                 "q": ("Quit", quit),
                 "t": ("Test", self.test),
-                "m": ("Measure", self.dist_gone)
                 }
         # loop and print the menu...
         for key in sorted(menu.keys()):
@@ -195,6 +194,13 @@ class GoPiggy(pigo.Pigo):
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         print("[ Press CTRL + C to stop me, then run stop.py ]\n")
         print("-----------! NAVIGATION ACTIVATED !------------\n")
+
+        try:
+            g = GoPiggy()
+        except (KeyboardInterrupt, SystemExit):
+            from gopigo import *
+            stop()
+
         # this is the loop part of the "main logic loop"
         while True:
             if self.is_clear():
@@ -211,15 +217,6 @@ class GoPiggy(pigo.Pigo):
             time.sleep(.1)
         self.stop()
         self.encB(3)
-
-    def dist_gone(self):
-        x = self.scan()
-        self.encF(2)
-        y = self.scan()
-        return x-y
-
-
-
 
 
     def test(self):
