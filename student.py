@@ -215,6 +215,8 @@ class GoPiggy(pigo.Pigo):
         answer = raw_input("Run? (y/n)")
         if answer == 'y':
             self.encF(2)
+        elif answer == 'yes':
+            self.encF(4)
         else:
             return
 
