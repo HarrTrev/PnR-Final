@@ -135,6 +135,7 @@ class GoPiggy(pigo.Pigo):
             self.scan[x] = self.dist()
         print("Here's what I saw:")
         print(self.scan)
+        return self.scan
 
 
 
@@ -196,14 +197,21 @@ class GoPiggy(pigo.Pigo):
         print("-----------! NAVIGATION ACTIVATED !------------\n")
 
         # this is the loop part of the "main logic loop"
-        while self.is_clear():
-            self.encF(10)
-        self.restore_heading()
-        answer = self.choose_path()
-        if answer == "left":
-            self.encL(6)
-        elif answer == "right":
-            self.encR(6)
+        self.trig()
+
+
+
+
+    def trig(self):
+        go_yes = True
+        direction = []
+        for x in range(self.MIDPOINT - 60, self.MIDPOINT + 60, 2):
+            if self.scan[x] > 30:
+                direction.insert(x)
+            self.servo(x)
+            self.scan[x] = self.dist()
+
+
 
     def cruise(self):
         self.fwd()  # I added this to pigo
