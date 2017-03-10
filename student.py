@@ -195,21 +195,15 @@ class GoPiggy(pigo.Pigo):
         print("[ Press CTRL + C to stop me, then run stop.py ]\n")
         print("-----------! NAVIGATION ACTIVATED !------------\n")
 
-        try:
-            g = GoPiggy()
-        except (KeyboardInterrupt, SystemExit):
-            from gopigo import *
-            stop()
-
         # this is the loop part of the "main logic loop"
-        while True:
-            if self.is_clear():
-                self.cruise()
-            answer = self.choose_path()
-            if answer == "left":
-                self.encL(6)
-            elif answer == "right":
-                self.encR(6)
+        while self.is_clear():
+            self.encF(10)
+        self.restore_heading()
+        answer = self.choose_path()
+        if answer == "left":
+            self.encL(6)
+        elif answer == "right":
+            self.encR(6)
 
     def cruise(self):
         self.fwd()  # I added this to pigo
@@ -218,7 +212,7 @@ class GoPiggy(pigo.Pigo):
         self.stop()
         self.encB(3)
 
-
+#Test to see dist. of robot per encF(1) @ 125, 125 speed. My return 1.5 cm
     def test(self):
         answer = raw_input("Run? (y/n)")
         if answer == 'y':
