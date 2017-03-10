@@ -210,6 +210,7 @@ class GoPiggy(pigo.Pigo):
                 direction.insert(x)
             self.servo(x)
             self.scan[x] = self.dist()
+        return direction
 
 
 
