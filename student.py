@@ -18,7 +18,7 @@ class GoPiggy(pigo.Pigo):
         # Our servo turns the sensor. What angle of the servo( ) method sets it straight?
         self.MIDPOINT = 90
         # YOU DECIDE: How close can an object get (cm) before we have to stop?
-        self.STOP_DIST = 30
+        self.STOP_DIST = 10
         # YOU DECIDE: What left motor power helps straighten your fwd()?
         self.LEFT_SPEED = 125
         # YOU DECIDE: What left motor power helps straighten your fwd()?
@@ -137,7 +137,13 @@ class GoPiggy(pigo.Pigo):
         print(self.scan)
         return self.scan
 
+    def encR(self, enc):
+        pigo.Pigo.encR(self, enc)
+        self.turn_track += enc
 
+    def encL(self, enc):
+        pigo.Pigo.encL(self, enc)
+        self.turn_track -= enc
 
     #YOU DECIDE: How does your GoPiggy dance?
     def dance(self):
@@ -197,27 +203,37 @@ class GoPiggy(pigo.Pigo):
         print("-----------! NAVIGATION ACTIVATED !------------\n")
 
         # this is the loop part of the "main logic loop"
-        self.trig()
 
 
 
+"""
+placeholder for a math based nav. Needs to remember angles, dist. travelled, and backing up
+attempting to find and store 'good angles'
+Want to store in [] then draw and use cruise to go to best angles
 
-    def trig(self):
+newest***
+just find optimal angle.
+else cruise
+"""
+    def ang_finder(self):
+        #store if its safe
         go_yes = True
+        #store all angles in order (right to left)
         direction = []
+        #start looking
         for x in range(self.MIDPOINT - 60, self.MIDPOINT + 60, 2):
-            if self.scan[x] > 30:
+
+            if self.STOP_DIST > 30:
                 direction.insert(x)
-            self.servo(x)
-            self.scan[x] = self.dist()
-        print(direction)
-
-
-
+                self.servo(x)
+                self.scan[x] = self.dist()
+            print(direction)
+#A borrowed method needs to go draw from the [] of angles
     def cruise(self):
-        self.fwd()  # I added this to pigo
-        while self.is_clear():
-            time.sleep(.1)
+        self.servo(self.MIDPOINT)
+        self.fwd()
+        while self.dist() > self.STOP_DIST:
+            time.sleep(.01)
         self.stop()
         self.encB(3)
 
