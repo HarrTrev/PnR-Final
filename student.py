@@ -202,32 +202,48 @@ class GoPiggy(pigo.Pigo):
         print("[ Press CTRL + C to stop me, then run stop.py ]\n")
         print("-----------! NAVIGATION ACTIVATED !------------\n")
 
+        self.ang_finder()
         # this is the loop part of the "main logic loop"
 
 
 
-"""
-placeholder for a math based nav. Needs to remember angles, dist. travelled, and backing up
-attempting to find and store 'good angles'
-Want to store in [] then draw and use cruise to go to best angles
+    """
+    placeholder for a math based nav. Needs to remember angles, dist. travelled, and backing up
+    attempting to find and store 'good angles'
+    Want to store in [] then draw and use cruise to go to best angles
 
-newest***
-just find optimal angle.
-else cruise
-"""
+    newest***
+    just find optimal angle.
+    else cruise
+    """
+
+
     def ang_finder(self):
-        #store if its safe
-        go_yes = True
-        #store all angles in order (right to left)
+        #scan
+        self.wide_scan()
+        #not seeing a path
+        path_detected = False
+        #list to store angles
         direction = []
-        #start looking
-        for x in range(self.MIDPOINT - 60, self.MIDPOINT + 60, 2):
-
-            if self.STOP_DIST > 30:
-                direction.insert(x)
-                self.servo(x)
-                self.scan[x] = self.dist()
-            print(direction)
+        #loop through found angles
+        for x in self.scan:
+            #check if the angle is good
+            if x > self.STOP_DIST + 20:
+                #angle good save angle good then save
+                if not path_detected:
+                    #save angle at start
+                    direction.insert(x)
+                path_detected = True
+            #if bad angle
+            else:
+                #if all previous angles were good
+                if path_detected:
+                    #good angle end
+                    path_detected = False
+                    #insert end angle
+                    direction.insert(x)
+        #print angles
+        print ("Good angles are: " + direction)
 #A borrowed method needs to go draw from the [] of angles
     def cruise(self):
         self.servo(self.MIDPOINT)
