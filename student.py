@@ -233,7 +233,7 @@ class GoPiggy(pigo.Pigo):
                     #insert end angle
                     self.direction.insert(x)
         #print angles
-        print ("Good angles are: " + self.direction)
+        print ("Good angles are: " + str(self.direction))
 
 #A borrowed method needs to go draw from the [] of angles
     def cruise(self):
