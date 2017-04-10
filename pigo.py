@@ -153,7 +153,7 @@ class Pigo(object):
             self.scan[x] = scan1
             print("Degree: "+str(x)+", distance: "+str(scan1))
             time.sleep(.01)
-            return x, scan1
+            print (x, scan1)
 
     def is_clear(self):
         print("Running the is_clear method.")
