@@ -207,16 +207,6 @@ class GoPiggy(pigo.Pigo):
 
 
 
-    """
-    placeholder for a math based nav. Needs to remember angles, dist. travelled, and backing up
-    attempting to find and store 'good angles'
-    Want to store in [] then draw and use cruise to go to best angles
-
-    newest***
-    just find optimal angle.
-    else cruise
-    """
-
 
     def ang_finder(self):
         #scan
