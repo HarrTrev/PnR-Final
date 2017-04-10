@@ -214,7 +214,7 @@ class GoPiggy(pigo.Pigo):
         #not seeing a path
         path_detected = False
         #list to store angles
-        self.direction = []
+        direction = []
         #loop through found angles
         for x in self.scan:
             #check if the angle is good
@@ -222,7 +222,7 @@ class GoPiggy(pigo.Pigo):
                 #angle good save angle good then save
                 if not path_detected:
                     #save angle at start
-                    self.direction.insert(x)
+                    direction.insert(x)
                 path_detected = True
             #if bad angle
             else:
@@ -231,9 +231,9 @@ class GoPiggy(pigo.Pigo):
                     #good angle end
                     path_detected = False
                     #insert end angle
-                    self.direction.insert(x)
+                    direction.add(x)
         #print angles
-        print ("Good angles are: " + str(self.direction))
+        print ("Good angles are: " + str(direction))
 
 #A borrowed method needs to go draw from the [] of angles
     def cruise(self):
