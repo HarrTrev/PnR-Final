@@ -224,7 +224,7 @@ class GoPiggy(pigo.Pigo):
         #not seeing a path
         path_detected = False
         #list to store angles
-        direction = []
+        self.direction = []
         #loop through found angles
         for x in self.scan:
             #check if the angle is good
@@ -241,7 +241,7 @@ class GoPiggy(pigo.Pigo):
                     #good angle end
                     path_detected = False
                     #insert end angle
-                    direction.insert(x)
+                    self.direction.insert(x)
         #print angles
         print ("Good angles are: " + direction)
 
