@@ -244,13 +244,20 @@ class GoPiggy(pigo.Pigo):
                     direction.insert(x)
         #print angles
         print ("Good angles are: " + direction)
+
 #A borrowed method needs to go draw from the [] of angles
     def cruise(self):
+        #checks in front at all times
         self.servo(self.MIDPOINT)
+        #go forward
         self.fwd()
+        #while there is more distance than what is needed to stop
         while self.dist() > self.STOP_DIST:
+            #small delay
             time.sleep(.01)
+        #stop
         self.stop()
+        #go back
         self.encB(3)
 
 #Test to see dist. of robot per encF(1) @ 125, 125 speed. My return 1.5 cm
