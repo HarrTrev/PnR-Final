@@ -232,7 +232,7 @@ class GoPiggy(pigo.Pigo):
                 #angle good save angle good then save
                 if not path_detected:
                     #save angle at start
-                    direction.insert(x)
+                    self.direction.insert(x)
                 path_detected = True
             #if bad angle
             else:
