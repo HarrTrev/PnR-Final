@@ -216,13 +216,13 @@ class GoPiggy(pigo.Pigo):
         #list to store angles
         self.direction = []
         #loop through found angles
-        for x in self.scan:
+        for x in range(self.MIDPOINT-60, self.MIDPOINT + 60):
             #check if the angle is good
-            if x > self.STOP_DIST + 20:
+            if self.scan[x] > self.STOP_DIST + 20:
                 #angle good save angle good then save
                 if not path_detected:
                     #save angle at start
-                    self.direction.insert(0, x)
+                    self.direction.append((x, x))
                 path_detected = True
             #if bad angle
             else:
@@ -231,7 +231,7 @@ class GoPiggy(pigo.Pigo):
                     #good angle end
                     path_detected = False
                     #insert end angle
-                    self.direction.insert(0, x)
+                    self.direction.append((0, x))
         #print angles
         print ("Good angles are: " + str(self.direction))
 
