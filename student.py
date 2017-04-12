@@ -18,7 +18,7 @@ class GoPiggy(pigo.Pigo):
         # Our servo turns the sensor. What angle of the servo( ) method sets it straight?
         self.MIDPOINT = 90
         # YOU DECIDE: How close can an object get (cm) before we have to stop?
-        self.STOP_DIST = 10
+        self.STOP_DIST = 15
         # YOU DECIDE: What left motor power helps straighten your fwd()?
         self.LEFT_SPEED = 125
         # YOU DECIDE: What left motor power helps straighten your fwd()?
@@ -222,7 +222,7 @@ class GoPiggy(pigo.Pigo):
                 #angle good save angle good then save
                 if not path_detected:
                     #save angle at start
-                    self.direction.append((x, x))
+                    self.direction.append((x, [x]))
                 path_detected = True
             #if bad angle
             else:
@@ -231,7 +231,7 @@ class GoPiggy(pigo.Pigo):
                     #good angle end
                     path_detected = False
                     #insert end angle
-                    self.direction.append((0, x))
+                    self.direction.append((x, [x]))
         #print angles
         print ("Good angles are: " + str(self.direction))
 
