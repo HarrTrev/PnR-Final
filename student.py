@@ -201,13 +201,36 @@ class GoPiggy(pigo.Pigo):
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         print("[ Press CTRL + C to stop me, then run stop.py ]\n")
         print("-----------! NAVIGATION ACTIVATED !------------\n")
-
+        #how many times have I turned?
+        self.counter = 0
+        while True:
+            #go forward till 'hit wall'
+            self.cruise()
+        #find ang
         self.ang_finder()
-        # this is the loop part of the "main logic loop"
+        # this is the loop part of the "main logic loop
 
 
+    #2nd method in sequence, finds good angles that would work not optimal
+    def ang_filter(self):
+        #how large the angle has to be
+        min_rang = 10
+        #saved angles
+        self.options = []
+        #all toplets counted in 2's
+        for x in range(len(self.direction)):
+            #checks if even
+            if x % 2 == 0:
+                # starting points
+                if abs(self.direction[x+1][0] - self.direction[x+1][0]) > min_rang:
+                    self.options.append(self.direction[x])
+                    self.options.append(self.direction[x+1])
+
+    #3rd method in sequence, finds best of angles
+    def ang_weigher(self):
 
 
+    #1st in sequence, finds all angles that past basic test
     def ang_finder(self):
         #scan
         self.wide_scan()
@@ -222,7 +245,7 @@ class GoPiggy(pigo.Pigo):
                 #angle good save angle good then save
                 if not path_detected:
                     #save angle at start
-                    self.direction.append((x, 0))
+                    self.direction.append((x, self.scan[x]))
                 path_detected = True
             #if bad angle
             else:
@@ -231,7 +254,7 @@ class GoPiggy(pigo.Pigo):
                     #good angle end
                     path_detected = False
                     #insert end angle
-                    self.direction.append((x, 0))
+                    self.direction.append((x, self.scan[x]))
         #print angles
         print ("Good angles are: " + str(self.direction))
 
@@ -249,6 +272,7 @@ class GoPiggy(pigo.Pigo):
         self.stop()
         #go back
         self.encB(3)
+        return False
 
 #Test to see dist. of robot per encF(1) @ 125, 125 speed. My return 1.5 cm
     def test(self):
