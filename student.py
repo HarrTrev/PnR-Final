@@ -206,9 +206,16 @@ class GoPiggy(pigo.Pigo):
         while True:
             #go forward till 'hit wall'
             self.cruise()
+
         #find ang
         self.ang_finder()
-        # this is the loop part of the "main logic loop
+        #filter unusable angles(too small)
+        self.ang_filter()
+        #Pick best angles
+        #self.ang_weigher()
+        #Go to angle
+        #self.ang_driver()
+
 
 
     #2nd method in sequence, finds good angles that would work not optimal
@@ -228,7 +235,12 @@ class GoPiggy(pigo.Pigo):
 
     #3rd method in sequence, finds best of angles
     def ang_weigher(self):
+        for x in range(len(self.direction)):
 
+
+
+    def ang_driver(self):
+        return False
 
     #1st in sequence, finds all angles that past basic test
     def ang_finder(self):
@@ -258,7 +270,7 @@ class GoPiggy(pigo.Pigo):
         #print angles
         print ("Good angles are: " + str(self.direction))
 
-#A borrowed method needs to go draw from the [] of angles
+    #A borrowed method needs to go draw from the [] of angles
     def cruise(self):
         #checks in front at all times
         self.servo(self.MIDPOINT)
@@ -274,7 +286,7 @@ class GoPiggy(pigo.Pigo):
         self.encB(3)
         return False
 
-#Test to see dist. of robot per encF(1) @ 125, 125 speed. My return 1.5 cm
+    #Test to see dist. of robot per encF(1) @ 125, 125 speed. My return 1.5 cm
     def test(self):
         answer = raw_input("Run? (y/n)")
         if answer == 'y':

@@ -46,6 +46,12 @@ Checks from +-60 Midpoint and saves angles in self.direction to be used later.
 'self.cruise()'
 Used when no obstacles detected
 
+'self.ang_filter()'
+Takes angles out that are impossible to get through.
+
+'self.ang_weigher()'
+Considers if angle would be optimal, i.e. checks # of turns, angle length, and distance.
+
 'self.nav()'
 Calculates angles, angles too small (ex. 52 - 53) would be discarded, largest angles saved. Then rotates toward angle, adds rotations taken to counter, then goes back to ang_finder() saving that it did 1st check in boolean.
 After angle is proven good, take final rotations (saved to counter aswell) to look toward angle and initiate cruise.
