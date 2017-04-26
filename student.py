@@ -203,15 +203,16 @@ class GoPiggy(pigo.Pigo):
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         #how many times have I turned?
         self.counter = 0
+        #If not in find mode
         while True:
             #go forward till 'hit wall'
             self.cruise()
 
-        #find ang
+        #find angles, no filter
         self.ang_finder()
         #filter unusable angles(too small)
         self.ang_filter()
-        #Pick best angles
+        #Pick best angles, optimize
         #self.ang_weigher()
         #Go to angle
         #self.ang_driver()
@@ -239,7 +240,12 @@ class GoPiggy(pigo.Pigo):
         gbp = 0
         for x in range(len(self.direction)):
             if [x] > 90:
-                if self.counter:
+                if self.counter > 0:
+                    gbp -= self.counter
+                elif self.counter < 0:
+                    gbp += self.counter
+                else:
+                    print "Clean slate."
 
 
     #def ang_driver(self):
