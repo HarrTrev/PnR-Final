@@ -235,8 +235,11 @@ class GoPiggy(pigo.Pigo):
 
     #3rd method in sequence, finds best of angles
     def ang_weigher(self):
+        #a counter to see how many 'favor' points the robot earned. >favor = higher chance angle is used.
+        gbp = 0
         for x in range(len(self.direction)):
-
+            if [x] > 90:
+                if self.counter:
 
 
     #def ang_driver(self):
@@ -272,6 +275,7 @@ class GoPiggy(pigo.Pigo):
 
     #A borrowed method needs to go draw from the [] of angles
     def cruise(self):
+        True
         #checks in front at all times
         self.servo(self.MIDPOINT)
         #go forward
