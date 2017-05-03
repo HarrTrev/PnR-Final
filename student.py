@@ -231,6 +231,7 @@ class GoPiggy(pigo.Pigo):
             if x % 2 == 0:
                 # starting points
                 if abs(self.direction[x+1][0] - self.direction[x+1][0]) > min_rang:
+                    #add the first part of an angle
                     self.options.append(self.direction[x])
                     self.options.append(self.direction[x+1])
 
@@ -238,15 +239,22 @@ class GoPiggy(pigo.Pigo):
     def ang_weigher(self):
         #a counter to see how many 'favor' points the robot earned. >favor = higher chance angle is used.
         gbp = 0
+        #Gos through each range set
         for x in range(len(self.direction)):
+            #Check the side it is on
             if [x] > 90:
+                #check the # of times side is used
                 if self.counter > 0:
+                    #subtracts from favor points
                     gbp -= self.counter
+                #check the # of times side was used
                 elif self.counter < 0:
+                    #add to favor points
                     gbp += self.counter
+                #No favor from counter
                 else:
-                    print "Clean slate."
-
+                    print("Clean slate.")
+        #Now to weight the dist in between angles
 
     #def ang_driver(self):
     #   return False
