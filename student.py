@@ -197,6 +197,65 @@ class GoPiggy(pigo.Pigo):
     ### MAIN LOGIC LOOP - the core algorithm of my navigation
     ### (kind of a big deal)
     ########################
+
+    def nav(self):
+        print("-----------! NAVIGATION ACTIVATED !------------\n")
+        print("[ Press CTRL + C to stop me, then run stop.py ]\n")
+        print("-----------! NAVIGATION ACTIVATED !------------\n")
+        # this is the loop part of the "main logic loop"
+        count = 0
+        while True:
+            if self.is_clear():
+                self.encF(35)
+                count += 1
+            # trying to make robot move backwards when locating obstacle
+            if self.dist() < self.STOP_DIST:
+                self.encB(5)
+            if count > 5 and self.turn_track != 0:
+                self.restore_heading()
+                count = 0
+            answer = self.choose_path()
+            if answer == "left":
+                self.encL(6)
+            elif answer == "right":
+                self.encR(6)
+                # trying to change navigation
+                # trying to make the robot move further when clear
+
+    def maneuver(self):
+        # I have turned right and need to check my left side
+        if self.turn_track > 0:
+            while self.is_clear():
+                # go forward a little bit
+                self.encF(5)
+            # look left
+            self.servo(self.MIDPOINT + 60)
+            # see if it's above self.STOP_DIST + 20
+            if self.dist() > self.STOP_DIST + 20:
+                # restore_heading
+                self.restore_heading()
+                # return
+                return
+            # look straight ahead again
+            self.servo(self.MIDPOINT)
+            # I have turned left and need to check my right side
+
+    def cruise(self):
+        self.fwd()  # I added this to pigo
+        while self.is_clear():
+            time.sleep(.1)
+        self.stop()
+        self.encB(3)
+
+    def encR(self, enc):
+        pigo.Pigo.encR(self, enc)
+        self.turn_track += enc
+
+    def encL(self, enc):
+        pigo.Pigo.encL(self, enc)
+        self.turn_track -= enc
+
+    '''''
     def nav(self):
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         print("[ Press CTRL + C to stop me, then run stop.py ]\n")
@@ -313,7 +372,7 @@ class GoPiggy(pigo.Pigo):
             self.encF(100)
         else:
             return
-
+    '''
 ####################################################
 ############### STATIC FUNCTIONS
 
