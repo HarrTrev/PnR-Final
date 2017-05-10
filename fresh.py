@@ -26,7 +26,7 @@ class Fresh:
         print("\n--------------Start Nav---------------\n")
         while True:
             if self.is_clear():
-            print("looks good, onwards")
+                print("looks good, onwards")
             fwd()
             while self.dist() > self.STOP_DIST:
                 time.sleep(.2)
