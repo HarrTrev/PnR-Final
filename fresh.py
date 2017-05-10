@@ -4,7 +4,12 @@ import logging
 class Fresh:
 
     def __init__(self):
-
+        #LOG_LEVEL = logging.INFO
+        LOG_LEVEL = logging.DEBUG
+        LOG_FILE = "/home/pi/PnR-Final/log_robot.log"
+        LOG_FORMAT = "%(asctime)s %(levelname)s %(message)s"
+        logging.basicConfig(filename=LOG_FILE, format=LOG_FORMAT, level=LOG_LEVEL)
+        logging.debug("Initializing")
         print("Your piggy has been instantiated!")
         # Our servo turns the sensor. What angle of the servo( ) method sets it straight?
         self.MIDPOINT = 90
@@ -23,6 +28,7 @@ class Fresh:
 
 
     def nav(self):
+        logging.debug("")
         print("\n--------------Start Nav---------------\n")
         while True:
             if self.is_clear():
