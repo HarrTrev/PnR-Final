@@ -212,7 +212,7 @@ class Fresh:
 try:
     f = Fresh()
 except (KeyboardInterrupt, SystemExit):
-        stop()from gopigo import *
+    stop() from gopigo import *
 import time
 
 class Fresh:
