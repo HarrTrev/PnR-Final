@@ -28,7 +28,7 @@ class Fresh:
 
 
     def nav(self):
-        logging.debug("")
+        logging.debug("Nav start.")
         print("\n--------------Start Nav---------------\n")
         while True:
             if self.is_clear():
@@ -44,17 +44,20 @@ class Fresh:
             self.encR(5)
 
     def set_speed(self, left, right):
+        logging.debug("Setting Speed.")
         set_left_speed(left)
         set_right_speed(right)
         print('Left speed set to: ' + str(left) + ' // Right set to: ' + str(right))
 
     def encF(self, enc):
+        logging.debug("Going Forward")
         print('Moving ' + str((enc / 18)) + ' rotation(s) forward')
         enc_tgt(1, 1, enc)
         fwd()
         time.sleep(1 * (enc / 18) + .4)
 
     def encR(self, enc):
+        logging.debug("Right Turn")
         print('Moving ' + str((enc / 18)) + ' rotation(s) right')
         enc_tgt(1, 1, enc)
         right_rot()
@@ -62,6 +65,7 @@ class Fresh:
         self.turn_track += enc
 
     def encL(self, enc):
+        logging.debug("Left turn")
         print('Moving ' + str((enc / 18)) + ' rotation(s) left')
         enc_tgt(1, 1, enc)
         left_rot()
@@ -69,17 +73,20 @@ class Fresh:
         self.turn_track -= enc
 
     def encB(self, enc):
+        logging.debug("Backing up")
         print('Moving ' + str((enc / 18)) + ' rotations(s) backwards')
         enc_tgt(1, 1, enc)
         bwd()
         time.sleep(1 * (enc / 18) + .4)
 
     def servo(selfself, val):
+        logging.debug("Moving servo")
         print('Moving servo to' + str(val) + 'deg')
         servo(val)
         time.sleep(.1)
 
     def dist(self):
+        logging.debug("Setting distance")
         measurement = us_dist(15)
         time.sleep(.05)
         print('I see something ' + str(measurement) + "cm away")
@@ -87,10 +94,12 @@ class Fresh:
 
     # DUMP ALL VALUES IN THE SCAN ARRAY
     def flush_scan(self):
+        logging.debug("Get this scan off. Flush scan incoming.")
         self.scan = [None] * 180
 
     # SEARCH 120 DEGREES COUNTING BY 2's
     def wide_scan(self):
+        logging.debug("Running wide scan.")
         # dump all values
         self.flush_scan()
         for x in range(self.MIDPOINT - 60, self.MIDPOINT + 60, +2):
@@ -112,6 +121,7 @@ class Fresh:
             print(x, scan1)
 
     def is_clear(self):
+        logging.debug("is_clear, anything ahead?")
         print("Running the is_clear method.")
         for x in range((self.MIDPOINT - 15), (self.MIDPOINT + 15), 5):
             servo(x)
