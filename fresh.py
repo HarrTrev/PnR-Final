@@ -45,6 +45,7 @@ class Fresh:
                 self.encR(5)
 
     def restore_heading(self):
+        logging.debug("Starting restore heading.")
         if self.turn_track > 15:
             self.encL(self.turn_track)
         elif self.turn_track < 15:
@@ -155,6 +156,7 @@ class Fresh:
 
     # DECIDE WHICH WAY TO TURN
     def choose_path(self):
+        logging.debug("Choosing path.")
         print('Considering options...')
         if self.is_clear():
             return "fwd"
@@ -178,6 +180,7 @@ class Fresh:
             return "left"
 
     def stop(self):
+        logging.debug("STOPPING")
         print('All stop.')
         stop()
         servo(self.MIDPOINT)
@@ -185,6 +188,7 @@ class Fresh:
 
 
     def calibrate(self):
+        logging.debug("Calibrating.")
         print("Calibrating...")
         servo(self.MIDPOINT)
         response = raw_input("Am I looking straight ahead? (y/n): ")
@@ -223,6 +227,7 @@ class Fresh:
 
     # PRINTS THE CURRENT STATUS OF THE ROBOT
     def status(self):
+        logging.debug("printing status.")
         print("My power is at " + str(volt()) + " volts")
         print('Left speed set to: ' + str(self.LEFT_SPEED) + ' // Right set to: ' + str(self.RIGHT_SPEED))
         print('My MIDPOINT is set to: ' + str(self.MIDPOINT))
