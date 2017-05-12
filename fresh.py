@@ -40,9 +40,9 @@ class Fresh:
             self.restore_heading()
             answer = self.choose_path()
             if answer == "left":
-                self.encL(5)
+                self.encL(1)
             else:
-                self.encR(5)
+                self.encR(1)
 
     def restore_heading(self):
         logging.debug("Starting restore heading.")
