@@ -14,7 +14,7 @@ class Fresh:
         # Our servo turns the sensor. What angle of the servo( ) method sets it straight?
         self.MIDPOINT = 90
         # YOU DECIDE: How close can an object get (cm) before we have to stop?
-        self.STOP_DIST = 15
+        self.STOP_DIST = 30
         # YOU DECIDE: What left motor power helps straighten your fwd()?
         self.LEFT_SPEED = 125
         # YOU DECIDE: What left motor power helps straighten your fwd()?
@@ -37,11 +37,20 @@ class Fresh:
             while self.dist() > self.STOP_DIST:
                 time.sleep(.2)
             self.stop()
-        answer = self.choose_path()
-        if answer == "left":
-            self.encL(5)
+            self.restore_heading()
+            answer = self.choose_path()
+            if answer == "left":
+                self.encL(5)
+            else:
+                self.encR(5)
+
+    def restore_heading(self):
+        if self.turn_track > 15:
+            self.encL(self.turn_track)
+        elif self.turn_track < 15:
+            self.encR(abs(self.turn_track))
         else:
-            self.encR(5)
+            return "Onward, forward. Dues Vult."
 
     def set_speed(self, left, right):
         logging.debug("Setting Speed.")
