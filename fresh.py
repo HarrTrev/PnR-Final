@@ -33,16 +33,16 @@ class Fresh:
         while True:
             if self.is_clear():
                 print("looks good, onwards")
-            fwd()
-            while self.dist() > self.STOP_DIST:
-                time.sleep(.2)
+                fwd()
+                while self.dist() > self.STOP_DIST:
+                    time.sleep(.2)
             self.stop()
             self.restore_heading()
             answer = self.choose_path()
             if answer == "left":
-                self.encL(1)
+                self.encL(5)
             else:
-                self.encR(1)
+                self.encR(5)
 
     def restore_heading(self):
         logging.debug("Starting restore heading.")
