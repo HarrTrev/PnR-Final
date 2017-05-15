@@ -16,7 +16,7 @@ class Fresh:
         # YOU DECIDE: How close can an object get (cm) before we have to stop?
         self.STOP_DIST = 30
         # YOU DECIDE: What left motor power helps straighten your fwd()?
-        self.LEFT_SPEED = 142
+        self.LEFT_SPEED = 145
         # YOU DECIDE: What left motor power helps straighten your fwd()?
         self.RIGHT_SPEED = 140
         # This one isn't capitalized because it changes during runtime, the others don't
@@ -33,7 +33,6 @@ class Fresh:
         while True:
             if self.is_clear():
                 print("looks good, onwards")
-                time.sleep(.2)
                 fwd()
                 while self.dist() > self.STOP_DIST:
                     time.sleep(.2)
