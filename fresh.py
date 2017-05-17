@@ -38,7 +38,7 @@ class Fresh:
                     time.sleep(.2)
             self.stop()
             self.encB(3)
-            #self.restore_heading()
+            self.restore_heading()
             answer = self.choose_path()
             if answer == "left":
                 self.encL(5)
@@ -47,16 +47,16 @@ class Fresh:
                 self.encR(5)
                 time.sleep(.2)
 
-    """
+
     def restore_heading(self):
         logging.debug("Starting restore heading.")
         if self.turn_track > 10:
-            self.encL(self.turn_track)
+            self.encL(2)
         elif self.turn_track < 10:
-            self.encR(abs(self.turn_track))
+            self.encR(2)
         else:
             return "Onward, forward. Dues Vult."
-    """
+
 
     def set_speed(self, left, right):
         logging.debug("Setting Speed.")
