@@ -38,7 +38,7 @@ class Fresh:
                     time.sleep(.2)
             self.stop()
             self.encB(3)
-            self.restore_heading()
+            #self.restore_heading()
             answer = self.choose_path()
             if answer == "left":
                 self.encL(5)
