@@ -16,7 +16,7 @@ class Fresh:
         # YOU DECIDE: How close can an object get (cm) before we have to stop?
         self.STOP_DIST = 30
         # YOU DECIDE: What left motor power helps straighten your fwd()?
-        self.LEFT_SPEED = 145
+        self.LEFT_SPEED = 143
         # YOU DECIDE: What left motor power helps straighten your fwd()?
         self.RIGHT_SPEED = 140
         # This one isn't capitalized because it changes during runtime, the others don't
@@ -47,6 +47,7 @@ class Fresh:
                 self.encR(5)
                 time.sleep(.2)
 
+    """
     def restore_heading(self):
         logging.debug("Starting restore heading.")
         if self.turn_track > 10:
@@ -55,6 +56,7 @@ class Fresh:
             self.encR(abs(self.turn_track))
         else:
             return "Onward, forward. Dues Vult."
+    """
 
     def set_speed(self, left, right):
         logging.debug("Setting Speed.")
