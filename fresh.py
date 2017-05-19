@@ -16,9 +16,9 @@ class Fresh:
         # YOU DECIDE: How close can an object get (cm) before we have to stop?
         self.STOP_DIST = 30
         # YOU DECIDE: What left motor power helps straighten your fwd()?
-        self.LEFT_SPEED = 100
+        self.LEFT_SPEED = 130
         # YOU DECIDE: What left motor power helps straighten your fwd()?
-        self.RIGHT_SPEED = 115
+        self.RIGHT_SPEED = 130
         # This one isn't capitalized because it changes during runtime, the others don't
         self.turn_track = 0
         # Our scan list! The index will be the degree and it will store distance
@@ -50,12 +50,12 @@ class Fresh:
 
     def restore_heading(self):
         logging.debug("Starting restore heading.")
-        if self.turn_track > 10:
-            self.encL(4)
-        elif self.turn_track < 10:
-            self.encR(4)
+        if self.turn_track > 5:
+            self.encL(6)
+        elif self.turn_track < 5:
+            self.encR(6)
         else:
-            return "Onward, forward. Dues Vult."
+            return "Onward."
 
 
     def set_speed(self, left, right):
