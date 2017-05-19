@@ -14,7 +14,7 @@ class Fresh:
         # Our servo turns the sensor. What angle of the servo( ) method sets it straight?
         self.MIDPOINT = 90
         # YOU DECIDE: How close can an object get (cm) before we have to stop?
-        self.STOP_DIST = 30
+        self.STOP_DIST = 20
         # YOU DECIDE: What left motor power helps straighten your fwd()?
         self.LEFT_SPEED = 130
         # YOU DECIDE: What left motor power helps straighten your fwd()?
